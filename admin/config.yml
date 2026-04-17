@@ -1,0 +1,92 @@
+backend:
+  name: github
+  repo: felixindra/felixindra.github.io
+  branch: main
+  auth_type: pkce
+  app_id: Ov23liAGoNMw1YUjZeqN 
+
+media_folder: assets/img
+public_folder: /assets/img
+
+collections:
+  # ── About Page ────────────────────────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "about"
+        label: "About"
+        file: "_pages/about.md"
+        fields:
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - label: "Profile"
+            name: "profile"
+            widget: "object"
+            fields:
+              - { label: "Align", name: "align", widget: "select", options: ["left", "right"], default: "right" }
+              - { label: "Image filename", name: "image", widget: "string", hint: "e.g. prof_pic.jpg" }
+              - { label: "Circular crop", name: "image_circular", widget: "boolean", default: false }
+              - { label: "More info (HTML)", name: "more_info", widget: "text", required: false }
+          - { label: "Show selected papers", name: "selected_papers", widget: "boolean", default: true }
+          - { label: "Show social icons", name: "social", widget: "boolean", default: true }
+          - { label: "Biography", name: "body", widget: "markdown" }
+
+  # ── News ──────────────────────────────────────────────────────────────────
+  - name: "news"
+    label: "News"
+    folder: "_news"
+    create: true
+    slug: "announcement_{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Inline (short)", name: "inline", widget: "boolean", default: true }
+      - { label: "Related posts", name: "related_posts", widget: "boolean", default: false }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  # ── Blog Posts ────────────────────────────────────────────────────────────
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Categories", name: "categories", widget: "list", required: false }
+      - { label: "Featured image", name: "thumbnail", widget: "image", required: false }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  # ── Projects ──────────────────────────────────────────────────────────────
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "page" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Cover image", name: "img", widget: "image", required: false }
+      - { label: "Importance (sort order)", name: "importance", widget: "number", required: false }
+      - { label: "Category", name: "category", widget: "string", required: false, hint: "e.g. work, fun" }
+      - { label: "Show related publications", name: "related_publications", widget: "boolean", default: false }
+      - { label: "Content", name: "body", widget: "markdown" }
+
+  # ── Site Config ───────────────────────────────────────────────────────────
+  - name: "config"
+    label: "Site Config"
+    files:
+      - name: "socials"
+        label: "Social Links"
+        file: "_data/socials.yml"
+        fields:
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "CV PDF path", name: "cv_pdf", widget: "string", required: false, hint: "e.g. /assets/pdf/cv.pdf" }
+          - { label: "Google Scholar ID", name: "scholar_userid", widget: "string", required: false }
+          - { label: "GitHub username", name: "github_username", widget: "string", required: false }
+          - { label: "LinkedIn username", name: "linkedin_username", widget: "string", required: false }
+          - { label: "Twitter username", name: "twitter_username", widget: "string", required: false }
+          - { label: "ORCID ID", name: "orcid_id", widget: "string", required: false }
