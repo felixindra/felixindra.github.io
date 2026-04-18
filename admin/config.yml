@@ -3,7 +3,7 @@ backend:
   repo: felixindra/felixindra.github.io
   branch: main
   auth_type: pkce
-  app_id: Ov23liAGoNMw1YUjZeqN 
+  app_id:  Ov23liAGoNMw1YUjZeqN  
 
 media_folder: assets/img
 public_folder: /assets/img
